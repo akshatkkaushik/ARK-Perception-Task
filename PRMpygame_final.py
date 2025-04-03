@@ -11,10 +11,11 @@ width,height=500,500
 screen=pygame.display.set_mode((width,height))
 pygame.display.set_caption("Choose points for pathfinding")
 response = requests.get("https://raw.githubusercontent.com/akshatkkaushik/ARK-Perception-Task/refs/heads/main/maze.png", stream=True).raw
-image_array = np.asarray(bytearray(response.read()), dtype=np.uint8)
+#image_array = np.asarray(bytearray(response.read()), dtype=np.uint8)
 
-
-maze=pygame.image.load(image_array)
+image_data = response.content
+image_file = io.BytesIO(image_data)
+maze=pygame.image.load(image_file)
 maze=pygame.transform.scale(maze, (width, height))
 start_py= None
 end_py= None
