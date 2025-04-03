@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-import request
+import requests
 threshold=60
 close_neighbors=8
 def checkValid(x_1,y_1,x_2,y_2,image):
@@ -41,7 +41,7 @@ cost=[[]]
 response = requests.get("https://raw.githubusercontent.com/akshatkkaushik/ARK-Perception-Task/refs/heads/main/maze.png", stream=True).raw
 image_array = np.asarray(bytearray(response.read()), dtype=np.uint8)
 
-img=cv2.imdecode(image_array, cv2.IMREAD_GRAYSCALE)img=cv2.imread(r"C:\Users\hp\Desktop\ARK\perception\PRM\maze.png",cv2.IMREAD_GRAYSCALE)
+img=cv2.imdecode(image_array, cv2.IMREAD_GRAYSCALE)
 img=cv2.resize(img,(500,500))
 for i in range(0,500):
     for j in range(0,500):
