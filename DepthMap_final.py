@@ -2,8 +2,14 @@ import matplotlib.pyplot as plt
 import cv2
 import numpy as np
 from scipy.signal import convolve2d
-imgL=cv2.imread(r"left.png",cv2.IMREAD_GRAYSCALE)
-imgR=cv2.imread(r"right.png",cv2.IMREAD_GRAYSCALE)
+import requests
+response = requests.get("https://raw.githubusercontent.com/akshatkkaushik/ARK-Perception-Task/main/left.png", stream=True).raw
+image_array = np.asarray(bytearray(response.read()), dtype=np.uint8)
+imgL=cv2.imdecode(image_array, cv2.IMREAD_GRAYSCALE)
+
+response = requests.get("https://raw.githubusercontent.com/akshatkkaushik/ARK-Perception-Task/main/right.png", stream=True).raw
+image_array = np.asarray(bytearray(response.read()), dtype=np.uint8)
+imgR=cv2.imdecode(image_array, cv2.IMREAD_GRAYSCALE)
 
 def get_disparity(im1, im2, max_disp, win_size):
     h,w=im1.shape
