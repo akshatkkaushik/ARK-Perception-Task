@@ -10,8 +10,7 @@ pygame.init()
 width,height=500,500
 screen=pygame.display.set_mode((width,height))
 pygame.display.set_caption("Choose points for pathfinding")
-response = requests.get("https://raw.githubusercontent.com/akshatkkaushik/ARK-Perception-Task/refs/heads/main/maze.png", stream=True).raw
-#image_array = np.asarray(bytearray(response.read()), dtype=np.uint8)
+response = requests.get("https://raw.githubusercontent.com/akshatkkaushik/ARK-Perception-Task/refs/heads/main/maze.png", stream=True)
 
 image_data = response.content
 image_file = io.BytesIO(image_data)
@@ -82,6 +81,7 @@ if start_py and end_py:
     response = requests.get("https://raw.githubusercontent.com/akshatkkaushik/ARK-Perception-Task/refs/heads/main/maze.png", stream=True).raw
     image_array = np.asarray(bytearray(response.read()), dtype=np.uint8)
     img=cv2.imdecode(image_array, cv2.IMREAD_GRAYSCALE)
+    img=cv2.resize(img,(500,500))
     for i in range(0,500):
         for j in range(0,500):
             if img[i][j]>=180:
