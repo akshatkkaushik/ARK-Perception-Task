@@ -2,6 +2,7 @@ import pygame
 import cv2
 import numpy as np
 import requests
+import io
 
 threshold=60
 close_neighbors=8
